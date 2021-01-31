@@ -63,15 +63,15 @@ if sys.version_info < (3,):
     sys.setdefaultencoding('utf-8')
 
 # Load swappable models
-Continent = load_model('cities', 'Continent')
-Country = load_model('cities', 'Country')
-City = load_model('cities', 'City')
+Continent = load_model('betweak_django_cities', 'Continent')
+Country = load_model('betweak_django_cities', 'Country')
+City = load_model('betweak_django_cities', 'City')
 
 
 # Only log errors during Travis tests
-LOGGER_NAME = os.environ.get('TRAVIS_LOGGER_NAME', 'cities')
+LOGGER_NAME = os.environ.get('TRAVIS_LOGGER_NAME', 'betweak_django_cities')
 
-# TODO: Remove backwards compatibility once django-cities requires Django 1.7
+# TODO: Remove backwards compatibility once django-betweak_django_cities requires Django 1.7
 # or 1.8 LTS.
 # _transact = (transaction.commit_on_success if django_version < (1, 6) else
 #              transaction.atomic)
@@ -469,7 +469,7 @@ class Command(BaseCommand):
         self.build_country_index()
         self.build_region_index()
 
-        for item in tqdm(data, disable=self.options.get('quiet'), total=total, desc="Importing cities"):
+        for item in tqdm(data, disable=self.options.get('quiet'), total=total, desc="Importing betweak_django_cities"):
             if not self.call_hook('city_pre', item):
                 continue
 

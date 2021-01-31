@@ -13,8 +13,8 @@ from ..conf import ALTERNATIVE_NAME_TYPES
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0005_add_foreignkeys_to_postalcode'),
-        swapper.dependency('cities', 'City'),
+        ('betweak_django_cities', '0005_add_foreignkeys_to_postalcode'),
+        swapper.dependency('betweak_django_cities', 'City'),
     ]
 
     operations = [
@@ -36,6 +36,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='postalcode',
             name='city',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='postal_codes', to=swapper.get_model_name('cities', 'City')),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='postal_codes', to=swapper.get_model_name('betweak_django_cities', 'City')),
         ),
     ]

@@ -11,5 +11,10 @@ dist
 .DAV/
 .env
 
+.venv/
+.idea/
+
+
+
 # Data files
-/cities/data/*
+/betweak_django_cities/data/*

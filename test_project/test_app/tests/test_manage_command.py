@@ -8,8 +8,8 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 from django.test.signals import setting_changed
 
-from cities.models import (Country, Region, Subregion, City, District,
-                           PostalCode, AlternativeName)
+from betweak_django_cities.models import (Country, Region, Subregion, City, District,
+                                          PostalCode, AlternativeName)
 
 from ..mixins import (
     NoInvalidSlugsMixin, CountriesMixin, RegionsMixin, SubregionsMixin,
@@ -37,14 +37,14 @@ class SkipCitiesWithEmptyRegionsManageCommandTestCase(
     def setUpTestData(cls):
         # Run the import command only once
         super(SkipCitiesWithEmptyRegionsManageCommandTestCase, cls).setUpTestData()
-        call_command('cities', force=True, **{
+        call_command('betweak_django_cities', force=True, **{
             'import': 'country,region,subregion,city,district',
         })
         cls.counts = {
             'countries': Country.objects.count(),
             'regions': Region.objects.count(),
             'subregions': Subregion.objects.count(),
-            'cities': City.objects.count(),
+            'betweak_django_cities': City.objects.count(),
             'districts': District.objects.count(),
             'postal_codes': PostalCode.objects.count(),
         }
@@ -70,14 +70,14 @@ class ManageCommandTestCase(
     def setUpTestData(cls):
         # Run the import command only once
         super(ManageCommandTestCase, cls).setUpTestData()
-        call_command('cities', force=True, **{
+        call_command('betweak_django_cities', force=True, **{
             'import': 'country,region,subregion,city,district,alt_name,postal_code',
         })
         cls.counts = {
             'countries': Country.objects.count(),
             'regions': Region.objects.count(),
             'subregions': Subregion.objects.count(),
-            'cities': City.objects.count(),
+            'betweak_django_cities': City.objects.count(),
             'districts': District.objects.count(),
             'alt_names': AlternativeName.objects.count(),
             'postal_codes': PostalCode.objects.count(),
@@ -89,13 +89,13 @@ class ManageCommandTestCase(
             AlternativeName.objects.filter(language_code__in=['en', 'und']).count())
 
     def test_idempotence(self):
-        call_command('cities', force=True, **{
+        call_command('betweak_django_cities', force=True, **{
             'import': 'country,region,subregion,city,alt_name,postal_code',
         })
         self.assertEqual(Country.objects.count(), self.counts['countries'])
         self.assertEqual(Region.objects.count(), self.counts['regions'])
         self.assertEqual(Subregion.objects.count(), self.counts['subregions'])
-        self.assertEqual(City.objects.count(), self.counts['cities'])
+        self.assertEqual(City.objects.count(), self.counts['betweak_django_cities'])
         self.assertEqual(District.objects.count(), self.counts['districts'])
         self.assertEqual(AlternativeName.objects.count(), self.counts['alt_names'])
         self.assertEqual(PostalCode.objects.count(), self.counts['postal_codes'])
@@ -122,14 +122,14 @@ class AllLocalesManageCommandTestCase(
     def setUpTestData(cls):
         # Run the import command only once
         super(AllLocalesManageCommandTestCase, cls).setUpTestData()
-        call_command('cities', force=True, **{
+        call_command('betweak_django_cities', force=True, **{
             'import': 'country,region,subregion,city,district,alt_name',
         })
         cls.counts = {
             'countries': Country.objects.count(),
             'regions': Region.objects.count(),
             'subregions': Subregion.objects.count(),
-            'cities': City.objects.count(),
+            'betweak_django_cities': City.objects.count(),
             'districts': District.objects.count(),
             'alt_names': AlternativeName.objects.count(),
         }

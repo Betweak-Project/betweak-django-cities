@@ -12,7 +12,7 @@ UNIQUE_SLUG_MODELS = ['Continent', 'Country', 'Region', 'Subregion', 'District',
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0009_add_slug_fields_to_models'),
+        ('betweak_django_cities', '0009_add_slug_fields_to_models'),
     ]
 
     operations = [

@@ -5,7 +5,7 @@ import sys
 
 from tqdm import tqdm
 
-from cities.conf import files
+from betweak_django_cities.conf import files
 
 
 def get_line_number(file_path):

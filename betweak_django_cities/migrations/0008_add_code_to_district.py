@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0007_add_currency_and_postal_code_fields_to_country_model'),
+        ('betweak_django_cities', '0007_add_currency_and_postal_code_fields_to_country_model'),
     ]
 
     operations = [

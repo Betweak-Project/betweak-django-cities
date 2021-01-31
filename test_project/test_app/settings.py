@@ -57,7 +57,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'cities',
+    'betweak_django_cities',
     'model_utils',
     'test_app',
 )
@@ -143,7 +143,7 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-        'cities': {
+        'betweak_django_cities': {
             'level': os.environ.get('TRAVIS_LOG_LEVEL', 'INFO'),
             'handlers': ['console'],
             'propagate': False,
@@ -152,7 +152,7 @@ LOGGING = {
 }
 # Cities config:
 travis_commit = os.environ.get('TRAVIS_COMMIT')
-travis_repo_slug = os.environ.get('TRAVIS_REPO_SLUG', 'coderholic/django-cities')
+travis_repo_slug = os.environ.get('TRAVIS_REPO_SLUG', 'coderholic/django-betweak_django_cities')
 travis_repo_branch = os.environ.get('TRAVIS_PULL_REQUEST_BRANCH', '')
 if travis_repo_branch == '':
     travis_repo_branch = os.environ.get('TRAVIS_BRANCH', os.environ.get('TRAVIS_REPO_BRANCH', 'master'))

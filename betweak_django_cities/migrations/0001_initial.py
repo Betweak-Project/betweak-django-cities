@@ -6,14 +6,14 @@ import django.contrib.gis.db.models.fields
 
 import swapper
 
-from cities.models import SET_NULL_OR_CASCADE
+from betweak_django_cities.models import SET_NULL_OR_CASCADE
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        swapper.dependency('cities', 'City'),
-        swapper.dependency('cities', 'Country'),
+        swapper.dependency('betweak_django_cities', 'City'),
+        swapper.dependency('betweak_django_cities', 'Country'),
     ]
 
     operations = [
@@ -40,11 +40,11 @@ class Migration(migrations.Migration):
                 ('elevation', models.IntegerField(null=True)),
                 ('kind', models.CharField(max_length=10)),
                 ('timezone', models.CharField(max_length=40)),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
             ],
             options={
-                'swappable': swapper.swappable_setting('cities', 'City'),
-                'verbose_name_plural': 'cities',
+                'swappable': swapper.swappable_setting('betweak_django_cities', 'City'),
+                'verbose_name_plural': 'betweak_django_cities',
             },
         ),
         migrations.CreateModel(
@@ -64,12 +64,12 @@ class Migration(migrations.Migration):
                 ('continent', models.CharField(max_length=2)),
                 ('tld', models.CharField(max_length=5)),
                 ('capital', models.CharField(max_length=100)),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
-                ('neighbours', models.ManyToManyField(related_name='neighbours_rel_+', to=swapper.get_model_name('cities', 'Country'))),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
+                ('neighbours', models.ManyToManyField(related_name='neighbours_rel_+', to=swapper.get_model_name('betweak_django_cities', 'Country'))),
             ],
             options={
                 'ordering': ['name'],
-                'swappable': swapper.swappable_setting('cities', 'Country'),
+                'swappable': swapper.swappable_setting('betweak_django_cities', 'Country'),
                 'verbose_name_plural': 'countries',
             },
         ),
@@ -82,8 +82,8 @@ class Migration(migrations.Migration):
                 ('name_std', models.CharField(max_length=200, verbose_name='standard name', db_index=True)),
                 ('location', django.contrib.gis.db.models.fields.PointField(srid=4326)),
                 ('population', models.IntegerField()),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
-                ('city', models.ForeignKey(to=swapper.get_model_name('cities', 'City'), on_delete=SET_NULL_OR_CASCADE)),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
+                ('city', models.ForeignKey(to=swapper.get_model_name('betweak_django_cities', 'City'), on_delete=SET_NULL_OR_CASCADE)),
             ],
             options={
                 'abstract': False,
@@ -100,8 +100,8 @@ class Migration(migrations.Migration):
                 ('region_name', models.CharField(max_length=100, db_index=True)),
                 ('subregion_name', models.CharField(max_length=100, db_index=True)),
                 ('district_name', models.CharField(max_length=100, db_index=True)),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
-                ('country', models.ForeignKey(related_name='postal_codes', to=swapper.get_model_name('cities', 'Country'), on_delete=SET_NULL_OR_CASCADE)),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
+                ('country', models.ForeignKey(related_name='postal_codes', to=swapper.get_model_name('betweak_django_cities', 'Country'), on_delete=SET_NULL_OR_CASCADE)),
             ],
             options={
                 'abstract': False,
@@ -115,8 +115,8 @@ class Migration(migrations.Migration):
                 ('slug', models.CharField(max_length=200)),
                 ('name_std', models.CharField(max_length=200, verbose_name='standard name', db_index=True)),
                 ('code', models.CharField(max_length=200, db_index=True)),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
-                ('country', models.ForeignKey(to=swapper.get_model_name('cities', 'Country'), on_delete=SET_NULL_OR_CASCADE)),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
+                ('country', models.ForeignKey(to=swapper.get_model_name('betweak_django_cities', 'Country'), on_delete=SET_NULL_OR_CASCADE)),
             ],
             options={
                 'abstract': False,
@@ -130,8 +130,8 @@ class Migration(migrations.Migration):
                 ('slug', models.CharField(max_length=200)),
                 ('name_std', models.CharField(max_length=200, verbose_name='standard name', db_index=True)),
                 ('code', models.CharField(max_length=200, db_index=True)),
-                ('alt_names', models.ManyToManyField(to='cities.AlternativeName')),
-                ('region', models.ForeignKey(to='cities.Region', on_delete=SET_NULL_OR_CASCADE)),
+                ('alt_names', models.ManyToManyField(to='betweak_django_cities.AlternativeName')),
+                ('region', models.ForeignKey(to='betweak_django_cities.Region', on_delete=SET_NULL_OR_CASCADE)),
             ],
             options={
                 'abstract': False,
@@ -140,16 +140,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='city',
             name='country',
-            field=models.ForeignKey(to=swapper.get_model_name('cities', 'Country'), on_delete=SET_NULL_OR_CASCADE),
+            field=models.ForeignKey(to=swapper.get_model_name('betweak_django_cities', 'Country'), on_delete=SET_NULL_OR_CASCADE),
         ),
         migrations.AddField(
             model_name='city',
             name='region',
-            field=models.ForeignKey(blank=True, to='cities.Region', null=True, on_delete=SET_NULL_OR_CASCADE),
+            field=models.ForeignKey(blank=True, to='betweak_django_cities.Region', null=True, on_delete=SET_NULL_OR_CASCADE),
         ),
         migrations.AddField(
             model_name='city',
             name='subregion',
-            field=models.ForeignKey(blank=True, to='cities.Subregion', null=True, on_delete=SET_NULL_OR_CASCADE),
+            field=models.ForeignKey(blank=True, to='betweak_django_cities.Subregion', null=True, on_delete=SET_NULL_OR_CASCADE),
         ),
     ]

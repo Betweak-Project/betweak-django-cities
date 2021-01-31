@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0008_add_code_to_district'),
+        ('betweak_django_cities', '0008_add_code_to_district'),
     ]
 
     operations = [

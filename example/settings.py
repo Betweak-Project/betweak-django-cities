@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.gis',
-    'cities',
+    'betweak_django_cities',
 )
 
 if django.VERSION < (1, 7):
@@ -51,7 +51,7 @@ CITIES_POSTAL_CODES = ['ALL']
 CITIES_LOCALES = ['ALL']
 
 CITIES_PLUGINS = [
-    'cities.plugin.postal_code_ca.Plugin',  # Canada postal codes need region codes remapped to match geonames
+    'betweak_django_cities.plugin.postal_code_ca.Plugin',  # Canada postal codes need region codes remapped to match geonames
 ]
 
 LOGGING = {
@@ -70,7 +70,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'cities': {
+        'betweak_django_cities': {
             'handlers': ['log_to_stdout'],
             'level': 'INFO',
             'propagate': True,

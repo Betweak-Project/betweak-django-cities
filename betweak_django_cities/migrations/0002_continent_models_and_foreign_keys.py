@@ -12,7 +12,7 @@ from ..util import add_continents as util_add_continents
 
 
 def get_model(apps, name):
-    model_tuple = swapper.split(swapper.get_model_name('cities', name))
+    model_tuple = swapper.split(swapper.get_model_name('betweak_django_cities', name))
     return apps.get_model(*model_tuple)
 
 
@@ -45,8 +45,8 @@ def rm_continent_fks(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0001_initial'),
-        swapper.dependency('cities', 'Country'),
+        ('betweak_django_cities', '0001_initial'),
+        swapper.dependency('betweak_django_cities', 'Country'),
     ]
 
     operations = [
@@ -60,13 +60,13 @@ class Migration(migrations.Migration):
             ],
             options={
                 'abstract': False,
-                'swappable': swapper.swappable_setting('cities', 'Continent'),
+                'swappable': swapper.swappable_setting('betweak_django_cities', 'Continent'),
             },
         ),
         migrations.AddField(
             model_name='continent',
             name='alt_names',
-            field=models.ManyToManyField(related_name='cities_continents', to='cities.AlternativeName'),
+            field=models.ManyToManyField(related_name='cities_continents', to='betweak_django_cities.AlternativeName'),
         ),
         migrations.RenameField(
             model_name='country',
@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='country',
             name='continent',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='countries', to=swapper.get_model_name('cities', 'Continent')),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='countries', to=swapper.get_model_name('betweak_django_cities', 'Continent')),
         ),
         migrations.RunPython(add_continents, rm_continents),
         migrations.RunPython(add_continent_fks, rm_continent_fks),

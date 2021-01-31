@@ -3,7 +3,7 @@
 """Call django.db.reset_queries randomly. Default chance is 0.000002 (0.0002%).
 
 This plugin may be useful when processing all geonames database.
-To process all geonames database and include cities that do not specify population
+To process all geonames database and include betweak_django_cities that do not specify population
 or when their population is less than 1000 people use following settings:
 
 CITIES_FILES = {

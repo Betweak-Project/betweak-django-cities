@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 
 import re
 
-from cities.models import (Continent, Country, Region, Subregion, City,
-                           District, PostalCode, AlternativeName)
-from cities.util import add_continents
+from betweak_django_cities.models import (Continent, Country, Region, Subregion, City,
+                                          District, PostalCode, AlternativeName)
+from betweak_django_cities.util import add_continents
 
 
 class NoInvalidSlugsMixin(object):

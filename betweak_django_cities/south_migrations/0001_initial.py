@@ -24,14 +24,14 @@ class Migration(SchemaMigration):
             ('tld', self.gf('django.db.models.fields.CharField')(max_length=5)),
             ('capital', self.gf('django.db.models.fields.CharField')(max_length=100)),
         ))
-        db.send_create_signal(u'cities', ['Country'])
+        db.send_create_signal(u'betweak_django_cities', ['Country'])
 
         # Adding M2M table for field alt_names on 'Country'
         m2m_table_name = db.shorten_name(u'cities_country_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('country', models.ForeignKey(orm[u'cities.country'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('country', models.ForeignKey(orm[u'betweak_django_cities.country'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['country_id', 'alternativename_id'])
 
@@ -39,8 +39,8 @@ class Migration(SchemaMigration):
         m2m_table_name = db.shorten_name(u'cities_country_neighbours')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('from_country', models.ForeignKey(orm[u'cities.country'], null=False)),
-            ('to_country', models.ForeignKey(orm[u'cities.country'], null=False))
+            ('from_country', models.ForeignKey(orm[u'betweak_django_cities.country'], null=False)),
+            ('to_country', models.ForeignKey(orm[u'betweak_django_cities.country'], null=False))
         ))
         db.create_unique(m2m_table_name, ['from_country_id', 'to_country_id'])
 
@@ -51,16 +51,16 @@ class Migration(SchemaMigration):
             ('slug', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('name_std', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
             ('code', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
-            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.Country'])),
+            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.Country'])),
         ))
-        db.send_create_signal(u'cities', ['Region'])
+        db.send_create_signal(u'betweak_django_cities', ['Region'])
 
         # Adding M2M table for field alt_names on 'Region'
         m2m_table_name = db.shorten_name(u'cities_region_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('region', models.ForeignKey(orm[u'cities.region'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('region', models.ForeignKey(orm[u'betweak_django_cities.region'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['region_id', 'alternativename_id'])
 
@@ -71,16 +71,16 @@ class Migration(SchemaMigration):
             ('slug', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('name_std', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
             ('code', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
-            ('region', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.Region'])),
+            ('region', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.Region'])),
         ))
-        db.send_create_signal(u'cities', ['Subregion'])
+        db.send_create_signal(u'betweak_django_cities', ['Subregion'])
 
         # Adding M2M table for field alt_names on 'Subregion'
         m2m_table_name = db.shorten_name(u'cities_subregion_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('subregion', models.ForeignKey(orm[u'cities.subregion'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('subregion', models.ForeignKey(orm[u'betweak_django_cities.subregion'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['subregion_id', 'alternativename_id'])
 
@@ -92,21 +92,21 @@ class Migration(SchemaMigration):
             ('name_std', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
             ('location', self.gf('django.contrib.gis.db.models.fields.PointField')()),
             ('population', self.gf('django.db.models.fields.IntegerField')()),
-            ('region', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.Region'], null=True, blank=True)),
-            ('subregion', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.Subregion'], null=True, blank=True)),
-            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.Country'])),
+            ('region', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.Region'], null=True, blank=True)),
+            ('subregion', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.Subregion'], null=True, blank=True)),
+            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.Country'])),
             ('elevation', self.gf('django.db.models.fields.IntegerField')(null=True)),
             ('kind', self.gf('django.db.models.fields.CharField')(max_length=10)),
             ('timezone', self.gf('django.db.models.fields.CharField')(max_length=40)),
         ))
-        db.send_create_signal(u'cities', ['City'])
+        db.send_create_signal(u'betweak_django_cities', ['City'])
 
         # Adding M2M table for field alt_names on 'City'
         m2m_table_name = db.shorten_name(u'cities_city_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('city', models.ForeignKey(orm[u'cities.city'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('city', models.ForeignKey(orm[u'betweak_django_cities.city'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['city_id', 'alternativename_id'])
 
@@ -118,16 +118,16 @@ class Migration(SchemaMigration):
             ('name_std', self.gf('django.db.models.fields.CharField')(max_length=200, db_index=True)),
             ('location', self.gf('django.contrib.gis.db.models.fields.PointField')()),
             ('population', self.gf('django.db.models.fields.IntegerField')()),
-            ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cities.City'])),
+            ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['betweak_django_cities.City'])),
         ))
-        db.send_create_signal(u'cities', ['District'])
+        db.send_create_signal(u'betweak_django_cities', ['District'])
 
         # Adding M2M table for field alt_names on 'District'
         m2m_table_name = db.shorten_name(u'cities_district_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('district', models.ForeignKey(orm[u'cities.district'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('district', models.ForeignKey(orm[u'betweak_django_cities.district'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['district_id', 'alternativename_id'])
 
@@ -140,7 +140,7 @@ class Migration(SchemaMigration):
             ('is_short', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('is_colloquial', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'cities', ['AlternativeName'])
+        db.send_create_signal(u'betweak_django_cities', ['AlternativeName'])
 
         # Adding model 'PostalCode'
         db.create_table(u'cities_postalcode', (
@@ -149,19 +149,19 @@ class Migration(SchemaMigration):
             ('slug', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('code', self.gf('django.db.models.fields.CharField')(max_length=20)),
             ('location', self.gf('django.contrib.gis.db.models.fields.PointField')()),
-            ('country', self.gf('django.db.models.fields.related.ForeignKey')(related_name='postal_codes', to=orm['cities.Country'])),
+            ('country', self.gf('django.db.models.fields.related.ForeignKey')(related_name='postal_codes', to=orm['betweak_django_cities.Country'])),
             ('region_name', self.gf('django.db.models.fields.CharField')(max_length=100, db_index=True)),
             ('subregion_name', self.gf('django.db.models.fields.CharField')(max_length=100, db_index=True)),
             ('district_name', self.gf('django.db.models.fields.CharField')(max_length=100, db_index=True)),
         ))
-        db.send_create_signal(u'cities', ['PostalCode'])
+        db.send_create_signal(u'betweak_django_cities', ['PostalCode'])
 
         # Adding M2M table for field alt_names on 'PostalCode'
         m2m_table_name = db.shorten_name(u'cities_postalcode_alt_names')
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('postalcode', models.ForeignKey(orm[u'cities.postalcode'], null=False)),
-            ('alternativename', models.ForeignKey(orm[u'cities.alternativename'], null=False))
+            ('postalcode', models.ForeignKey(orm[u'betweak_django_cities.postalcode'], null=False)),
+            ('alternativename', models.ForeignKey(orm[u'betweak_django_cities.alternativename'], null=False))
         ))
         db.create_unique(m2m_table_name, ['postalcode_id', 'alternativename_id'])
 
@@ -209,7 +209,7 @@ class Migration(SchemaMigration):
         db.delete_table(db.shorten_name(u'cities_postalcode_alt_names'))
 
     models = {
-        u'cities.alternativename': {
+        u'betweak_django_cities.alternativename': {
             'Meta': {'object_name': 'AlternativeName'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_colloquial': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -218,10 +218,10 @@ class Migration(SchemaMigration):
             'language': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '256'})
         },
-        u'cities.city': {
+        u'betweak_django_cities.city': {
             'Meta': {'object_name': 'City'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.Country']"}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.Country']"}),
             'elevation': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'kind': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
@@ -229,14 +229,14 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'name_std': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'population': ('django.db.models.fields.IntegerField', [], {}),
-            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.Region']", 'null': 'True', 'blank': 'True'}),
+            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.Region']", 'null': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'subregion': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.Subregion']", 'null': 'True', 'blank': 'True'}),
+            'subregion': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.Subregion']", 'null': 'True', 'blank': 'True'}),
             'timezone': ('django.db.models.fields.CharField', [], {'max_length': '40'})
         },
-        u'cities.country': {
+        u'betweak_django_cities.country': {
             'Meta': {'ordering': "['name']", 'object_name': 'Country'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
             'area': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             'capital': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'code': ('django.db.models.fields.CharField', [], {'max_length': '2', 'db_index': 'True'}),
@@ -247,16 +247,16 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'languages': ('django.db.models.fields.CharField', [], {'max_length': '250', 'null': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
-            'neighbours': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'neighbours_rel_+'", 'to': u"orm['cities.Country']"}),
+            'neighbours': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'neighbours_rel_+'", 'to': u"orm['betweak_django_cities.Country']"}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'population': ('django.db.models.fields.IntegerField', [], {}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'tld': ('django.db.models.fields.CharField', [], {'max_length': '5'})
         },
-        u'cities.district': {
+        u'betweak_django_cities.district': {
             'Meta': {'object_name': 'District'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
-            'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.City']"}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
+            'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.City']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.contrib.gis.db.models.fields.PointField', [], {}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
@@ -264,11 +264,11 @@ class Migration(SchemaMigration):
             'population': ('django.db.models.fields.IntegerField', [], {}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
-        u'cities.postalcode': {
+        u'betweak_django_cities.postalcode': {
             'Meta': {'object_name': 'PostalCode'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
             'code': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'postal_codes'", 'to': u"orm['cities.Country']"}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'postal_codes'", 'to': u"orm['betweak_django_cities.Country']"}),
             'district_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_index': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.contrib.gis.db.models.fields.PointField', [], {}),
@@ -277,26 +277,26 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'subregion_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'db_index': 'True'})
         },
-        u'cities.region': {
+        u'betweak_django_cities.region': {
             'Meta': {'object_name': 'Region'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
             'code': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.Country']"}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.Country']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'name_std': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
-        u'cities.subregion': {
+        u'betweak_django_cities.subregion': {
             'Meta': {'object_name': 'Subregion'},
-            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['cities.AlternativeName']", 'symmetrical': 'False'}),
+            'alt_names': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['betweak_django_cities.AlternativeName']", 'symmetrical': 'False'}),
             'code': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
             'name_std': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_index': 'True'}),
-            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['cities.Region']"}),
+            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['betweak_django_cities.Region']"}),
             'slug': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         }
     }
 
-    complete_apps = ['cities']
+    complete_apps = ['betweak_django_cities']

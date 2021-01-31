@@ -1,7 +1,7 @@
 from django.contrib.gis.geos import Point
 from django.test import TestCase
 
-from cities import models
+from betweak_django_cities import models
 
 
 class SlugModelTest(object):

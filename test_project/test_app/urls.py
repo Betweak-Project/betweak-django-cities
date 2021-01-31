@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.core.exceptions import ImproperlyConfigured
 
-from cities.util import patterns
+from betweak_django_cities.util import patterns
 
 
 app_name = "test_app"

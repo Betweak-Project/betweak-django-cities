@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0003_add_verbose_name_and_related_names'),
+        ('betweak_django_cities', '0003_add_verbose_name_and_related_names'),
     ]
 
     operations = [

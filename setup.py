@@ -14,7 +14,7 @@ def read(fname):
 
 
 setup(
-    name='django-cities',
+    name='django-betweak_django_cities',
     version='0.6',
     description='Place models and worldwide place data for Django',
     author='Ben Dowling',
@@ -38,7 +38,7 @@ setup(
         'tox',
     ],
     license="MIT",
-    keywords="django cities countries regions postal codes geonames",
+    keywords="django betweak_django_cities countries regions postal codes geonames",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",

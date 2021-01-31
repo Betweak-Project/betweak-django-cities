@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cities', '0006_typify_alt_names_and_add_is_historic'),
+        ('betweak_django_cities', '0006_typify_alt_names_and_add_is_historic'),
     ]
 
     operations = [

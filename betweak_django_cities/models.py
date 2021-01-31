@@ -114,7 +114,7 @@ class BaseContinent(Place, SlugModel):
 
 class Continent(BaseContinent):
     class Meta(BaseContinent.Meta):
-        swappable = swapper.swappable_setting('cities', 'Continent')
+        swappable = swapper.swappable_setting('betweak_django_cities', 'Continent')
 
 
 class BaseCountry(Place, SlugModel):
@@ -127,7 +127,7 @@ class BaseCountry(Place, SlugModel):
     currency_symbol = models.CharField(max_length=31, blank=True, null=True)
     language_codes = models.CharField(max_length=250, null=True)
     phone = models.CharField(max_length=20)
-    continent = models.ForeignKey(swapper.get_model_name('cities', 'Continent'),
+    continent = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'Continent'),
                                   null=True,
                                   related_name='countries',
                                   on_delete=SET_NULL_OR_CASCADE)
@@ -158,13 +158,13 @@ class BaseCountry(Place, SlugModel):
 
 class Country(BaseCountry):
     class Meta(BaseCountry.Meta):
-        swappable = swapper.swappable_setting('cities', 'Country')
+        swappable = swapper.swappable_setting('betweak_django_cities', 'Country')
 
 
 class Region(Place, SlugModel):
     name_std = models.CharField(max_length=200, db_index=True, verbose_name="standard name")
     code = models.CharField(max_length=200, db_index=True)
-    country = models.ForeignKey(swapper.get_model_name('cities', 'Country'),
+    country = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'Country'),
                                 related_name='regions',
                                 on_delete=SET_NULL_OR_CASCADE)
 
@@ -213,18 +213,18 @@ class BaseCity(Place, SlugModel):
     slug_contains_id = True
 
     name_std = models.CharField(max_length=200, db_index=True, verbose_name="standard name")
-    country = models.ForeignKey(swapper.get_model_name('cities', 'Country'),
-                                related_name='cities',
+    country = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'Country'),
+                                related_name='betweak_django_cities',
                                 on_delete=SET_NULL_OR_CASCADE)
     region = models.ForeignKey(Region,
                                null=True,
                                blank=True,
-                               related_name='cities',
+                               related_name='betweak_django_cities',
                                on_delete=SET_NULL_OR_CASCADE)
     subregion = models.ForeignKey(Subregion,
                                   null=True,
                                   blank=True,
-                                  related_name='cities',
+                                  related_name='betweak_django_cities',
                                   on_delete=SET_NULL_OR_CASCADE)
     location = PointField()
     population = models.IntegerField()
@@ -235,7 +235,7 @@ class BaseCity(Place, SlugModel):
     class Meta:
         abstract = True
         unique_together = (('country', 'region', 'subregion', 'id', 'name'),)
-        verbose_name_plural = "cities"
+        verbose_name_plural = "betweak_django_cities"
 
     @property
     def parent(self):
@@ -249,7 +249,7 @@ class BaseCity(Place, SlugModel):
 
 class City(BaseCity):
     class Meta(BaseCity.Meta):
-        swappable = swapper.swappable_setting('cities', 'City')
+        swappable = swapper.swappable_setting('betweak_django_cities', 'City')
 
 
 class District(Place, SlugModel):
@@ -259,7 +259,7 @@ class District(Place, SlugModel):
     code = models.CharField(blank=True, db_index=True, max_length=200, null=True)
     location = PointField()
     population = models.IntegerField()
-    city = models.ForeignKey(swapper.get_model_name('cities', 'City'),
+    city = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'City'),
                              related_name='districts',
                              on_delete=SET_NULL_OR_CASCADE)
 
@@ -306,7 +306,7 @@ class PostalCode(Place, SlugModel):
     code = models.CharField(max_length=20)
     location = PointField()
 
-    country = models.ForeignKey(swapper.get_model_name('cities', 'Country'),
+    country = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'Country'),
                                 related_name='postal_codes',
                                 on_delete=SET_NULL_OR_CASCADE)
 
@@ -325,7 +325,7 @@ class PostalCode(Place, SlugModel):
                                   null=True,
                                   related_name='postal_codes',
                                   on_delete=SET_NULL_OR_CASCADE)
-    city = models.ForeignKey(swapper.get_model_name('cities', 'City'),
+    city = models.ForeignKey(swapper.get_model_name('betweak_django_cities', 'City'),
                              blank=True,
                              null=True,
                              related_name='postal_codes',

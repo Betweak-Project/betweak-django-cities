@@ -59,13 +59,13 @@ class PostalCodeAdmin(CitiesAdmin):
     search_fields = ['code', 'country__name', 'region_name', 'subregion_name']
 
 
-if not swapper.is_swapped('cities', 'Continent'):
+if not swapper.is_swapped('betweak_django_cities', 'Continent'):
     admin.site.register(Continent, ContinentAdmin)
-if not swapper.is_swapped('cities', 'Country'):
+if not swapper.is_swapped('betweak_django_cities', 'Country'):
     admin.site.register(Country, CountryAdmin)
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Subregion, SubregionAdmin)
-if not swapper.is_swapped('cities', 'City'):
+if not swapper.is_swapped('betweak_django_cities', 'City'):
     admin.site.register(City, CityAdmin)
 admin.site.register(District, DistrictAdmin)
 admin.site.register(AlternativeName, AltNameAdmin)

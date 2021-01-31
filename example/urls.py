@@ -2,7 +2,7 @@ from django import VERSION as DJANGO_VERSION
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import ListView
-from cities.models import (Country, Region, City, District, PostalCode)
+from betweak_django_cities.models import (Country, Region, City, District, PostalCode)
 
 
 def patterns(prefix, *args):

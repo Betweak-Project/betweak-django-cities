@@ -232,7 +232,7 @@ _CURRENCY_SYMBOLS = {
 
 _NO_LONGER_EXISTENT_COUNTRY_CODES = ['CS', 'AN']
 
-_SLUGIFY_FUNCTION = getattr(django_settings, 'CITIES_SLUGIFY_FUNCTION', 'cities.util.default_slugify')
+_SLUGIFY_FUNCTION = getattr(django_settings, 'CITIES_SLUGIFY_FUNCTION', 'betweak_django_cities.util.default_slugify')
 
 # See http://www.geonames.org/export/codes.html
 city_types = ['PPL', 'PPLA', 'PPLC', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLG']
@@ -363,6 +363,6 @@ module_name, _, function_name = _SLUGIFY_FUNCTION.rpartition('.')
 SLUGIFY_FUNCTION = getattr(import_module(module_name), function_name)
 
 # Users who want better postal codes can flip this on (developers of
-# django-cities itself probably will), but most probably won't want to
+# django-betweak_django_cities itself probably will), but most probably won't want to
 VALIDATE_POSTAL_CODES = getattr(django_settings, 'CITIES_VALIDATE_POSTAL_CODES', False)
 DJANGO_VERSION = float('.'.join(map(str, django.VERSION[:2])))
