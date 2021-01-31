@@ -72,20 +72,26 @@ Your database must support spatial queries, see the [GeoDjango documentation](ht
 Clone this repository into your project:
 
 ```bash
-git clone https://github.com/coderholic/django-cities.git
+git clone https://github.com/Betweak-Project/betweak-django-cities
 ```
 
 Download the zip file and unpack it:
 
 ```bash
-wget https://github.com/coderholic/django-cities/archive/master.zip
+wget https://github.com/Betweak-Project/betweak-django-cities/archive/master.zip
 unzip master.zip
 ```
+
+Install Development Version with pip:
+```bash
+pip install -e git+https://github.com/Betweak-Project/betweak-django-cities.git#egg=betweak_django_cities
+```
+
 
 Install with pip:
 
 ```bash
-pip install django-betweak_django_cities
+pip install betweak_django_cities
 ```
 
 ## Configuration

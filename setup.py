@@ -14,12 +14,12 @@ def read(fname):
 
 
 setup(
-    name='django-betweak_django_cities',
-    version='0.6',
+    name='betweak_django_cities',
+    version='1.0',
     description='Place models and worldwide place data for Django',
-    author='Ben Dowling',
-    author_email='ben.m.dowling@gmail.com',
-    url='https://github.com/coderholic/django-cities',
+    author='Younsoo Shin',
+    author_email='tweatershin@gmail.com',
+    url='https://github.com/Betweak-Project/betweak-django-cities',
     packages=find_packages(exclude=['example']),
     install_requires=[
         'django-model-utils',
