@@ -74,6 +74,7 @@ class SlugModel(models.Model):
 class Place(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name="ascii name")
     alt_names = models.ManyToManyField('AlternativeName')
+    woe_id = models.BigIntegerField(null=True)
 
     objects = GeoManager()
 
